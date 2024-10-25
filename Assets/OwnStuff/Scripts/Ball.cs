@@ -6,6 +6,9 @@ using UnityEngine.Events;
 public class Ball : MonoBehaviour
 {
 
+    [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private LifeManager lifeManger;
+
     public Vector3 shootDirection = new Vector3(0, 0, 0);
 
     public List<Vector3> shootingDirections = new List<Vector3>()
@@ -28,20 +31,19 @@ public class Ball : MonoBehaviour
         new Vector3(0,0,-1f)
     };
 
-    private Vector3 startPos;
-
     private Rigidbody rig;
 
     private int RGN1;
     private int RGN2;
 
+    private bool canTriggerScore = true;
+
     void Start()
     {
-
-
+        scoreManager = FindObjectOfType<ScoreManager>();
+        lifeManger = FindObjectOfType<LifeManager>();
 
         rig = GetComponent<Rigidbody>();
-        startPos = this.transform.position;
         if(shootingDirections.Count > 0)
         {
             RGN1 = Random.Range(0, shootingDirections.Count);
@@ -70,4 +72,23 @@ public class Ball : MonoBehaviour
     {
         rig.AddForce(shootDirection, ForceMode.Impulse);
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Goal"))
+        {
+            lifeManger.DecreaseHealth();
+        }
+        if(canTriggerScore == true)
+        {
+            if (other.CompareTag("Player"))
+            {
+                canTriggerScore = false;
+                scoreManager.IncreaseScore();
+            }
+        }
+
+
+    }
+
 }

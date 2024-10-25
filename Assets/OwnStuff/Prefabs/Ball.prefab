@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7743123767860965256}
   - component: {fileID: 6210418371637891229}
   - component: {fileID: 1724778999840315590}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,20 +100,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a5c888763b69c42a934feae32d03a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreManager: {fileID: 0}
+  lifeManger: {fileID: 0}
   shootDirection: {x: 0, y: 0, z: 0}
   shootingDirections:
-  - {x: 3, y: 2.5, z: 0}
-  - {x: 3, y: 2, z: 0}
-  - {x: 4, y: 2.5, z: 0}
-  - {x: 4, y: 2, z: 0}
-  - {x: 5, y: 2.5, z: 0}
-  - {x: 5, y: 2, z: 0}
+  - {x: 6, y: 2, z: 0}
+  - {x: 6, y: 2, z: 0}
+  - {x: 6, y: 2, z: 0}
+  - {x: 6, y: 2, z: 0}
+  - {x: 6, y: 2, z: 0}
+  - {x: 6, y: 2, z: 0}
   ballRotationForce:
-  - {x: 0, y: 0, z: 0.2}
-  - {x: 0, y: 0, z: 0.25}
   - {x: 0, y: 0, z: 0.3}
+  - {x: 0, y: 0, z: 0.2}
+  - {x: 0, y: 0, z: 0.1}
+  - {x: 0, y: 0, z: -0.1}
   - {x: 0, y: 0, z: -0.2}
-  - {x: 0, y: 0, z: -0.25}
   - {x: 0, y: 0, z: -0.3}
 --- !u!135 &5060488602826537194
 SphereCollider:

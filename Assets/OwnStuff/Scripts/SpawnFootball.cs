@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnFootball : MonoBehaviour
 {
     [SerializeField] private GameObject footBall;
+    [SerializeField] private LifeManager lifeManager;
 
     public List<GameObject> ballList = new List<GameObject>();
 
@@ -27,6 +28,10 @@ public class SpawnFootball : MonoBehaviour
 
     public IEnumerator BallGame()
     {
+        if(lifeManager.lives <= 0)
+        {
+            StopCoroutine(BallGame());
+        }
         yield return new WaitForSeconds(4f);
 
         SpawnBall();
@@ -37,10 +42,6 @@ public class SpawnFootball : MonoBehaviour
     public void StartBallGame()
     {
         StartCoroutine(BallGame());
-    }
-    public void StopBallGame()
-    {
-        StopCoroutine(BallGame());
     }
 
 
