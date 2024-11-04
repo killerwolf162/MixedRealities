@@ -103,20 +103,33 @@ MonoBehaviour:
   scoreManager: {fileID: 0}
   lifeManger: {fileID: 0}
   shootDirection: {x: 0, y: 0, z: 0}
-  shootingDirections:
-  - {x: 6, y: 2, z: 0}
-  - {x: 6, y: 2, z: 0}
-  - {x: 6, y: 2, z: 0}
-  - {x: 6, y: 2, z: 0}
-  - {x: 6, y: 2, z: 0}
-  - {x: 6, y: 2, z: 0}
+  shootingSpeed:
+  - 5
+  - 6
+  - 7
+  shootingHeight:
+  - 1
+  - 1.5
+  - 2
+  - 2.25
+  shootingDirection:
+  - -0.45
+  - -0.35
+  - -0.25
+  - -0.15
+  - 0
+  - 0.15
+  - 0.25
+  - 0.35
+  - 0.45
   ballRotationForce:
-  - {x: 0, y: 0, z: 0.3}
-  - {x: 0, y: 0, z: 0.2}
-  - {x: 0, y: 0, z: 0.1}
-  - {x: 0, y: 0, z: -0.1}
-  - {x: 0, y: 0, z: -0.2}
-  - {x: 0, y: 0, z: -0.3}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0.5}
+  - {x: 0, y: 0, z: 0.25}
+  - {x: 0, y: 0, z: -1}
+  - {x: 0, y: 0, z: -0.5}
+  - {x: 0, y: 0, z: -0.25}
+  canTriggerScore: 1
 --- !u!135 &5060488602826537194
 SphereCollider:
   m_ObjectHideFlags: 0

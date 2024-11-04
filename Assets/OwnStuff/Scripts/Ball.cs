@@ -11,48 +11,64 @@ public class Ball : MonoBehaviour
 
     public Vector3 shootDirection = new Vector3(0, 0, 0);
 
-    public List<Vector3> shootingDirections = new List<Vector3>()
+    public List<float> shootingSpeed = new List<float>() // first value in vector 3
     {
-        new Vector3(5,2.5f,0),
-        new Vector3(6,2.5f,0),
-        new Vector3(7,2.5f,0),
-        new Vector3(5,2f,0),
-        new Vector3(6,2f,0),
-        new Vector3(7,2f,0),
+        5,6,7
 
     };
-    public List<Vector3> ballRotationForce = new List<Vector3>()
+    public List<float> shootingHeight = new List<float>() // second value in vector 3
     {
-        new Vector3(0,0,1.5f),
-        new Vector3(0,0,0.5f),
+        1,1.5f,2,2.25f
+    };
+
+    public List<float> shootingDirection = new List<float>() // third value in vector 3
+    {
+        -0.45f,-0.35f,-0.25f,-0.15f,0,0.15f, 0.25f, 0.35f,0.45f
+    };
+
+    public List<Vector3> ballRotationForce = new List<Vector3>() // keeps being added for swerve
+    {
         new Vector3(0,0,1f),
-        new Vector3(0,0,-1.5f),
+        new Vector3(0,0,0.5f),
+        new Vector3(0,0,0.25f),
+        new Vector3(0,0,-1f),
         new Vector3(0,0,-0.5f),
-        new Vector3(0,0,-1f)
+        new Vector3(0,0,-0.25f)
     };
 
     private Rigidbody rig;
 
-    private int RGN1;
-    private int RGN2;
+    private int RGN1, RGN2, RGN3, RGN4;
 
-    private bool canTriggerScore = true;
+    public bool canTriggerScore = true;
 
     void Start()
     {
+        
+
         scoreManager = FindObjectOfType<ScoreManager>();
         lifeManger = FindObjectOfType<LifeManager>();
 
         rig = GetComponent<Rigidbody>();
-        if(shootingDirections.Count > 0)
-        {
-            RGN1 = Random.Range(0, shootingDirections.Count);
-            shootDirection = shootingDirections[RGN1];
-        }
 
-        if(ballRotationForce.Count > 0)
+        if (shootingSpeed.Count > 0)
         {
-            RGN2 = Random.Range(0, ballRotationForce.Count);
+            RGN1 = Random.Range(0, shootingSpeed.Count);
+            shootDirection.x = shootingSpeed[RGN1];
+        }
+        if (shootingHeight.Count > 0)
+        {
+            RGN2 = Random.Range(0, shootingHeight.Count);
+            shootDirection.y = shootingHeight[RGN2];
+        }
+        if (shootingDirection.Count > 0)
+        {
+            RGN3 = Random.Range(0, shootingDirection.Count);
+            shootDirection.z = shootingDirection[RGN3];
+        }
+        if (ballRotationForce.Count > 0)
+        {
+            RGN4 = Random.Range(0, ballRotationForce.Count);
         }
 
         ShootBall();
@@ -63,8 +79,8 @@ public class Ball : MonoBehaviour
     {
         if (ballRotationForce.Count > 0)
         {
-            rig.AddForce(ballRotationForce[RGN2], ForceMode.Force);
-        }    
+            rig.AddForce(ballRotationForce[RGN4], ForceMode.Force);
+        }
 
     }
 
@@ -75,20 +91,10 @@ public class Ball : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Goal"))
+        if (other.CompareTag("Goal"))
         {
             lifeManger.DecreaseHealth();
         }
-        if(canTriggerScore == true)
-        {
-            if (other.CompareTag("Player"))
-            {
-                canTriggerScore = false;
-                scoreManager.IncreaseScore();
-            }
-        }
-
-
     }
 
 }

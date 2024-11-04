@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class LifeManager : MonoBehaviour
 {
+    public UnityEvent OnDie;
+    
     [SerializeField] public int lives = 3;
     [SerializeField] public int maxLives = 3;
 
@@ -18,7 +20,10 @@ public class LifeManager : MonoBehaviour
 
     private void Update()
     {
-
+        if(lives <= 0)
+        {
+            OnDie.Invoke();
+        }
     }
 
     public void DecreaseHealth()

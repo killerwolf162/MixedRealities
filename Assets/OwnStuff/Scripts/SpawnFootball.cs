@@ -41,7 +41,14 @@ public class SpawnFootball : MonoBehaviour
 
     public void StartBallGame()
     {
+        Debug.Log("started BallGame, GET READY!!");
         StartCoroutine(BallGame());
+    }
+
+    public void StopBallGame()
+    {
+        Debug.Log("Stopped BallGame, VERY SADGE!!");
+        StopAllCoroutines();
     }
 
 
